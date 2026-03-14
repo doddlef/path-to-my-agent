@@ -1,0 +1,195 @@
+Tokenizer training corpus v1
+Purpose: learn and build tokenizers from scratch.
+Format: UTF-8 plain text, one sample per line.
+
+Hello world.
+This is a small corpus for tokenizer experiments.
+Tokenizers split text into units called tokens.
+A token may be a word, subword, character, or byte.
+Different tokenizers produce different vocabularies.
+
+Natural language examples start here.
+I like reading books about language models and tokenization.
+She studies machine learning every evening.
+They built a tiny search engine in one weekend.
+We can test segmentation quality with held-out text.
+The quick brown fox jumps over the lazy dog.
+Pack my box with five dozen liquor jugs.
+How razorback-jumping frogs can level six piqued gymnasts!
+Sphinx of black quartz, judge my vow.
+Crazy Fredrick bought many very exquisite opal jewels.
+
+Contractions and apostrophes.
+I'm learning how token boundaries affect downstream tasks.
+You're probably curious about BPE and Unigram.
+We'll compare results when the vocabulary size changes.
+Don't assume a bigger vocabulary is always better.
+It's useful to inspect unknown-token behavior.
+
+Hyphenation and compounds.
+state-of-the-art models can still fail on domain-specific text.
+high-quality datasets improve low-resource scenarios.
+end-to-end systems need robust pre-processing.
+non-linear effects appear during scaling.
+zero-shot and few-shot prompts may tokenize differently.
+
+Numbers and units.
+The model saw 3 examples in 2 minutes.
+Batch size was 64 and sequence length was 512.
+The file is 12KB, then 128KB, then 1MB.
+Temperature 0.7, top_p 0.9, frequency_penalty 0.2.
+CPU usage peaked at 93 percent during training.
+Accuracy moved from 71.4 to 78.9 in 4 epochs.
+In 2024-06-30 we collected version 1 data.
+In 2025-01-15 we collected version 2 data.
+In 2026-03-14 we generated this starter corpus.
+
+Dates and times.
+March 14, 2026 is a Saturday.
+2026/03/14 and 14-03-2026 are alternate date styles.
+The meeting starts at 09:30 and ends at 11:45.
+Use ISO 8601 like 2026-03-14T09:30:00+11:00.
+Timezone abbreviations include UTC, PST, and AEST.
+
+Punctuation stress test.
+Wait... what?! Really?!
+Comma, period. Semicolon; colon: and dash - all matter.
+Quotes: "double", 'single', and `backticks`.
+Parentheses (round), [square], and {curly} brackets.
+Math-ish symbols: + - * / = < > <= >= !=.
+Currency symbols in ASCII style: USD 19.99, EUR 17.50, JPY 2500.
+
+URLs and identifiers.
+Visit https://example.com/docs/tokenizer for details.
+API endpoint: https://api.example.com/v1/train?lang=en&size=32000.
+Email support@example.com for help.
+Path examples: /usr/local/bin, C:/Users/name/Documents.
+Package names: tokenizers, sentencepiece, transformers.
+Version tags: v0.1.0, v1.2.3-rc1, build_20260314.
+
+Code-like snippets as plain text.
+for i in range(10): print(i)
+if loss < best_loss: save_checkpoint()
+SELECT id, name FROM users WHERE active = 1;
+{"event":"train_start","step":0,"ok":true}
+<note id="x1">XML-like text sample</note>
+function tokenize(input) { return input.split(" "); }
+let score = Math.max(0, Math.min(1, value));
+
+Short Q and A style lines.
+Q: What is tokenization?
+A: The process of splitting text into smaller units.
+Q: Why subword tokenization?
+A: It balances vocabulary size and coverage.
+Q: Why byte-level tokenization?
+A: It avoids unknown characters by design.
+
+Domain terms: NLP.
+embedding attention transformer decoder encoder positional
+prompt completion instruction alignment fine-tuning inference
+latency throughput memory bandwidth quantization distillation
+retrieval reranking indexing chunking caching evaluation
+precision recall f1 rouge bleu perplexity calibration
+
+Domain terms: software.
+repository branch commit merge rebase cherry-pick stash
+container image orchestration deployment rollback monitor
+thread process mutex semaphore deadlock race condition
+schema migration transaction isolation consistency durability
+unit-test integration-test smoke-test regression-test benchmark
+
+Domain terms: data.
+csv json jsonl parquet avro protobuf sqlite postgres
+column row record field feature label target sample
+normalization standardization imputation deduplication filtering
+train validation test split random seed reproducibility
+outlier drift leakage bias variance overfitting underfitting
+
+Mixed casing and styles.
+camelCase snake_case kebab-case PascalCase UPPER_CASE lower_case
+HTTPRequest HTTPResponse parseURL parse_html render-page
+userID user_id user-id UserId USER_ID
+
+Repeated patterns for frequency learning.
+alpha beta gamma delta epsilon
+alpha beta gamma delta epsilon
+alpha beta gamma delta epsilon
+alpha beta gamma delta epsilon
+alpha beta gamma delta epsilon
+
+Common stop words.
+a an the and or but if then else while for of to in on at by with
+this that these those here there where when why how what who whom
+
+Names and entities.
+Alice met Bob in New York.
+Charlie emailed Dana about Project Atlas.
+Eve reviewed Frank's pull request.
+Grace and Heidi discussed tokenizer edge cases.
+Ivan joined Judy for a model debugging session.
+
+Error messages and logs.
+INFO 2026-03-14 09:31:22 training started
+WARN 2026-03-14 09:31:35 low disk space on /tmp
+ERROR 2026-03-14 09:31:42 failed to open file: permission denied
+DEBUG step=120 lr=0.0003 loss=2.184 grad_norm=1.27
+TRACE tokenizer.merge pair=('t','h') freq=4821
+
+Command-line style text.
+python train_tokenizer.py --input assets/tokenizer_training_corpus.txt --vocab-size 8000
+python eval_tokenizer.py --model ./artifacts/tokenizer.json --text "Tokenization test"
+cat data.txt | tr 'A-Z' 'a-z' | sort | uniq -c
+rg "token" -n assets/tokenizer_training_corpus.txt
+
+Edge cases.
+empty-string marker: ""
+whitespace-only marker: " "
+newline escape marker: \n
+longwordwithoutspacesforcharacterleveltokenizationstress
+supercalifragilisticexpialidocious appears in playful corpora.
+co-operate and cooperate may tokenize differently.
+naive and naïve can differ with normalization settings.
+resume and résumé can merge or split by policy.
+
+Mini paragraphs.
+Tokenizers are compression-like systems for text. They define a mapping between strings and integer IDs. Better tokenization can reduce sequence length and improve efficiency.
+A practical workflow is to collect domain text, normalize it, train several tokenizer variants, then evaluate each using downstream metrics and qualitative inspection.
+When vocabulary is too small, sequences get longer. When vocabulary is too large, rare fragments waste capacity. Balance is task dependent.
+
+Simple dialogue.
+User: Can we train with 8k vocab?
+Assistant: Yes, start with 8k and compare against 16k.
+User: Should we lowercase everything?
+Assistant: Try both cased and uncased settings.
+
+Pseudo markdown lines.
+# Heading Example
+## Subheading Example
+- bullet one
+- bullet two
+1. first item
+2. second item
+
+More multilingual-like transliterations in ASCII.
+ni hao ma
+konnichiwa sekai
+annyeonghaseyo sesang
+hola mundo
+bonjour le monde
+hallo welt
+ciao mondo
+
+Data-like rows.
+id=1,name=alpha,score=0.91,label=positive
+id=2,name=beta,score=0.47,label=negative
+id=3,name=gamma,score=0.73,label=neutral
+id=4,name=delta,score=0.88,label=positive
+id=5,name=epsilon,score=0.12,label=negative
+
+Final repetition block.
+train tokenizer evaluate tokenizer deploy tokenizer
+train tokenizer evaluate tokenizer deploy tokenizer
+train tokenizer evaluate tokenizer deploy tokenizer
+train tokenizer evaluate tokenizer deploy tokenizer
+
+End of corpus.
